@@ -6,10 +6,18 @@
 
 (def new-board ["" "" "" "" "" "" "" "" ""])
 
-(defn is-available? [cell]
-  (clojure.string/blank? cell)
-  )
+(defn available? [cell]
+  (clojure.string/blank? cell))
 
-(defn is-empty? [cells]
-  (every? is-available? cells)
-  )
+(defn empty? [cells]
+  (every? available? cells))
+
+(defn mark-board [board position mark]
+  (assoc board (- position 1)  mark))
+
+(defn get-cell [board position]
+  (let [index (- position 1)]
+  (nth board index)))
+
+(defn marked? [cell]
+  (not (available? cell)))

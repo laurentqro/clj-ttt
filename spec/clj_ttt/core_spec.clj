@@ -4,4 +4,10 @@
 
 (describe "the board"
   (it "should be empty"
-    (should= true (is-empty? new-board))))
+    (should= true (empty? new-board)))
+
+  (it "can be marked"
+    (let [board (mark-board new-board 1 "X")
+          cell (get-cell board 1)]
+    (should= true (marked? cell)))))
+
