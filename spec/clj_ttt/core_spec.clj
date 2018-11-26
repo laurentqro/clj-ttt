@@ -2,6 +2,6 @@
   (:require [speclj.core :refer :all]
             [clj-ttt.core :refer :all]))
 
-(describe "a test"
-  (it "FIXME, I fail."
-    (should= 0 1)))
+(describe "the board"
+  (it "should be empty"
+    (should= true (is-empty? new-board))))
