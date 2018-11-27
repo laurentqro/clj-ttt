@@ -9,5 +9,10 @@
   (it "can be marked"
     (let [board (mark-board new-board 1 "X")
           cell (get-cell board 1)]
-    (should= true (marked? cell)))))
+      (should= true (marked? cell))))
 
+  (it "recognizes a win"
+    (let [board (create-board "X" "X" "X"
+                               "" "" ""
+                               "" "" "")]
+      (should= true (win? board)))))
