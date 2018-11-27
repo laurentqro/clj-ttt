@@ -4,7 +4,7 @@
 
 (describe "the board"
   (it "should be empty"
-    (should= true (empty? new-board)))
+    (should= true (pristine? new-board)))
 
   (it "can be marked"
     (let [board (mark-board new-board 1 "X")

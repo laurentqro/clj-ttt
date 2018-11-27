@@ -30,7 +30,7 @@
 (defn- winning-combination? [combination]
   (apply = combination))
 
-(defn empty? [cells]
+(defn pristine? [cells]
   (every? available? cells))
 
 (defn get-cell [board position]
