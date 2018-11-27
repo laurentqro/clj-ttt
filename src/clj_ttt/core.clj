@@ -43,7 +43,7 @@
   (concat (left-diagonal board) (right-diagonal board)))
 
 (defn combinations [board]
-  (concat (rows board) (columns board) (diagonals board)))
+  (concat ((juxt rows columns diagonals) board)))
 
 (defn winning-combination? [combination]
   (apply = combination))
