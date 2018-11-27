@@ -19,8 +19,11 @@
   (let [index (- position 1)]
     (nth board index)))
 
-(defn marked? [cell]
-  (not (available? cell)))
+(defn full? [board]
+  (not-any? #(= "" %) board))
+
+(defn empty? [cells]
+  (every? available? cells))
 
 (defn rows [board]
   (apply partition 3 board))
@@ -48,3 +51,5 @@
 (defn no-win? [board]
   (not-any? winning-combination? (combinations board)))
 
+(defn tie? [board]
+  ((every-pred full? no-win?) board))

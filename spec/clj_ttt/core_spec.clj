@@ -28,3 +28,9 @@
                                 "X" "O" "O"
                                 "X" "X" "X")]
         (should= true (win? board))))
+
+  (it "recognizes a tie"
+      (let [board (create-board "X" "X" "O"
+                                "O" "O" "X"
+                                "X" "O" "X")]
+        (should= true (tie? board)))))
