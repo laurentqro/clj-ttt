@@ -12,9 +12,6 @@
 (defn available? [cell]
   (clojure.string/blank? cell))
 
-(defn empty? [cells]
-  (every? available? cells))
-
 (defn mark-board [board position mark]
   (assoc board (- position 1)  mark))
 
@@ -39,14 +36,15 @@
   (map-indexed
    (fn [row-index row] (nth row row-index)) (reverse (rows board))))
 
-(defn diagonals [board]
-  (concat (left-diagonal board) (right-diagonal board)))
-
 (defn combinations [board]
-  (concat ((juxt rows columns diagonals) board)))
+  ((juxt rows columns right-diagonal left-diagonal) board))
 
 (defn winning-combination? [combination]
   (apply = combination))
 
 (defn win? [board]
-  (some winning-combination? (combinations board)))
+  (some winning-combination? (partition 3 (flatten (combinations board)))))
+
+(defn no-win? [board]
+  (not-any? winning-combination? (combinations board)))
+

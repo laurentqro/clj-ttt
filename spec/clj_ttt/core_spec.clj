@@ -9,10 +9,22 @@
   (it "can be marked"
     (let [board (mark-board new-board 1 "X")
           cell (get-cell board 1)]
-      (should= true (marked? cell))))
+      (should= "X" cell)))
 
-  (it "recognizes a win"
-    (let [board (create-board "X" "X" "X"
-                               "" "" ""
-                               "" "" "")]
-      (should= true (win? board)))))
+  (it "recognizes a diagonal win"
+    (let [board (create-board "X" "O" "X"
+                              "O" "X" "O"
+                              "O" "X" "X")]
+      (should= true (win? board))))
+
+  (it "recognizes a row win"
+      (let [board (create-board "X" "X" "X"
+                                "X" "O" "O"
+                                "O" "X" "X")]
+        (should= true (win? board))))
+
+  (it "recognizes a column win"
+      (let [board (create-board "X" "O" "X"
+                                "X" "O" "O"
+                                "X" "X" "X")]
+        (should= true (win? board))))
