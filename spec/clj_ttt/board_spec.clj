@@ -33,4 +33,10 @@
       (let [board (create-board "X" "X" "O"
                                 "O" "O" "X"
                                 "X" "O" "X")]
-        (should= true (tie? board)))))
+        (should= true (tie? board))))
+
+  (it "shows available moves"
+      (should= "123456789" (apply str (available-moves new-board))))
+
+  (it "knows player X should start"
+        (should= "X" (current-player-mark new-board))))

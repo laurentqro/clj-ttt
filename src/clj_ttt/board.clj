@@ -1,7 +1,9 @@
 (ns clj-ttt.board)
 
 (defn- available? [cell]
-  (clojure.string/blank? cell))
+  (or
+   (not= cell "X")
+   (not= cell "O")))
 
 (defn- full? [board]
   (not-any? #(= "" %) board))
@@ -26,6 +28,12 @@
 (defn- winning-combination? [combination]
   (apply = combination))
 
+(defn available-moves [board]
+  (filter available? board))
+
+(defn- available-moves-count [board]
+  (count (available-moves board)))
+
 (defn pristine? [cells]
   (every? available? cells))
 
@@ -48,4 +56,9 @@
 (defn create-board [& cells]
   (vector cells))
 
-(def new-board ["" "" "" "" "" "" "" "" ""])
+(defn current-player-mark [board]
+  (cond
+    (odd?  (available-moves-count board)) "X"
+    (even? (available-moves-count board)) "O"))
+
+(def new-board ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
