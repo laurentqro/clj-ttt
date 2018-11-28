@@ -1,38 +1,43 @@
 (ns clj-ttt.board)
 
 (defn- available? [cell]
-  (or
+  (and
    (not= cell "X")
    (not= cell "O")))
 
-(defn- full? [board]
-  (not-any? #(= "" %) board))
+(defn rows [board]
+  (let [n 3]
+    (->> (range n)
+         (map #(vec [(nth board (+ 0 (* n %)))
+                     (nth board (+ 1 (* n %)))
+                     (nth board (+ 2 (* n %)))]))
+         (vec))))
 
-(defn- rows [board]
-  (apply partition 3 board))
-
-(defn- columns [board]
+(defn columns [board]
   (apply mapv vector (rows board)))
 
-(defn- left-diagonal [board]
-  (map-indexed
-   (fn [row-index row] (nth row row-index)) (rows board)))
+(defn diagonals [board]
+  [
+   [(nth board 0)
+    (nth board 4)
+    (nth board 8)]
+   [(nth board 6)
+    (nth board 4)
+    (nth board 2)]
+   ]
+  )
 
-(defn- right-diagonal [board]
-  (map-indexed
-   (fn [row-index row] (nth row row-index)) (reverse (rows board))))
-
-(defn- combinations [board]
-  ((juxt rows columns right-diagonal left-diagonal) board))
-
-(defn- winning-combination? [combination]
+(defn winning-combination? [combination]
   (apply = combination))
 
 (defn available-moves [board]
   (filter available? board))
 
-(defn- available-moves-count [board]
+(defn available-moves-count [board]
   (count (available-moves board)))
+
+(defn full? [board]
+  (= 0 (available-moves-count board)))
 
 (defn pristine? [cells]
   (every? available? cells))
@@ -41,20 +46,25 @@
   (let [index (- position 1)]
     (nth board index)))
 
-(defn no-win? [board]
-  (not-any? winning-combination? (combinations board)))
-
 (defn win? [board]
-  (some winning-combination? (partition 3 (flatten (combinations board)))))
+  (boolean
+   (or
+    (some winning-combination? (rows board))
+    (some winning-combination? (columns board))
+    (some winning-combination? (diagonals board)))))
 
 (defn tie? [board]
-  ((every-pred full? no-win?) board))
+  (and
+    (full? board)
+    (not (win? board))))
+
+(defn game-over? [board]
+  (or
+   (win? board)
+   (tie? board)))
 
 (defn mark-board [board position mark]
   (assoc board (- position 1)  mark))
-
-(defn create-board [& cells]
-  (vector cells))
 
 (defn current-player-mark [board]
   (cond

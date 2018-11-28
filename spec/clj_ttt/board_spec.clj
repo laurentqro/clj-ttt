@@ -12,31 +12,34 @@
       (should= "X" cell)))
 
   (it "recognizes a diagonal win"
-    (let [board (create-board "X" "O" "X"
-                              "O" "X" "O"
-                              "O" "X" "X")]
+      (let [board ["X" "O" "X"
+                   "O" "X" "O"
+                   "O" "X" "X"]]
       (should= true (win? board))))
 
   (it "recognizes a row win"
-      (let [board (create-board "X" "X" "X"
-                                "X" "O" "O"
-                                "O" "X" "X")]
+      (let [board ["X" "X" "X"
+                   "X" "O" "O"
+                   "O" "X" "X"]]
         (should= true (win? board))))
 
   (it "recognizes a column win"
-      (let [board (create-board "X" "O" "X"
-                                "X" "O" "O"
-                                "X" "X" "X")]
+      (let [board ["X" "O" "X"
+                   "X" "O" "O"
+                   "X" "X" "X"]]
         (should= true (win? board))))
 
   (it "recognizes a tie"
-      (let [board (create-board "X" "X" "O"
-                                "O" "O" "X"
-                                "X" "O" "X")]
+      (let [board ["X" "X" "O"
+                   "O" "O" "X"
+                   "X" "O" "X"]]
         (should= true (tie? board))))
 
+  (it "an empty board has no tie"
+        (should= false (tie? new-board)))
+
   (it "shows available moves"
-      (should= "123456789" (apply str (available-moves new-board))))
+      (should= "23" (apply str (available-moves ["X" "2" "3"]))))
 
   (it "knows player X should start"
         (should= "X" (current-player-mark new-board))))
