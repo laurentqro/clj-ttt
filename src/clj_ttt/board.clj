@@ -63,13 +63,10 @@
   (boolean
     (some winning-combination? (combinations board))))
 
-(def no-win?
-  (complement win?))
-
 (defn tie? [board]
   (and
     (full? board)
-    (no-win? board)))
+    ((complement win?) board)))
 
 (defn game-over? [board]
   (or
