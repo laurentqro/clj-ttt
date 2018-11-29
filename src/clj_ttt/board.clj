@@ -13,10 +13,10 @@
                      (nth board (+ 2 (* n %)))]))
          (vec))))
 
-(defn columns [board]
+(defn- columns [board]
   (apply mapv vector (rows board)))
 
-(defn diagonals [board]
+(defn- diagonals [board]
   [
    [(nth board 0)
     (nth board 4)
@@ -27,35 +27,35 @@
    ]
   )
 
-(defn winning-combination? [combination]
+(defn- winning-combination? [combination]
   (apply = combination))
 
 (defn available-moves [board]
   (filter available? board))
 
-(defn available-moves-count [board]
+(defn- available-moves-count [board]
   (count (available-moves board)))
 
-(defn full? [board]
+(defn- full? [board]
   (= 0 (available-moves-count board)))
 
 (defn pristine? [board]
   (every? available? board))
 
-(defn get-cell [board position]
-  (let [index (- position 1)]
-    (nth board index)))
-
-(defn combinations [board]
+(defn- combinations [board]
   (->> board
        ((juxt rows columns diagonals))
        (apply concat)))
 
-(defn winning-combination [board]
+(defn- winning-combination [board]
   (->> board
        (combinations)
        (filter winning-combination?)
        (first)))
+
+(defn get-cell [board position]
+  (let [index (- position 1)]
+    (nth board index)))
 
 (defn winner [board]
   (->> board
