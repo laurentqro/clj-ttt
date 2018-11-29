@@ -18,6 +18,7 @@
 
 
 (defn start-game []
+  (greetings)
   (play-turn new-board))
 
 (defn -main

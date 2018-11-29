@@ -2,7 +2,7 @@
   (:require [clj-ttt.board :refer :all]))
 
 (defn- display [output]
-  (printf output))
+  (println output))
 
 (defn- format-row [board]
   (clojure.string/join " | " board))
@@ -12,6 +12,10 @@
        (rows)
        (map format-row)
        (clojure.string/join "\n")))
+
+
+(defn greetings []
+  (display "Welcome to Tic Tac Toe"))
 
 (defn display-board [board]
   (->> board

@@ -17,6 +17,11 @@
       (start-game))))
 
 (describe "a human vs. human game"
+          (it "greets the players"
+              (should-contain
+               "Welcome"
+               (human-v-human-game-output moves-for-x-win)))
+
           (it "announces X win"
               (should-contain
                 "X wins"
