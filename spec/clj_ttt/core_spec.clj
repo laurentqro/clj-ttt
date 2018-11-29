@@ -16,20 +16,23 @@
     (with-in-str (input moves)
       (start-game))))
 
-(describe "a full human vs. human game with X win"
-          (it "should go through to the end"
+(describe "a human vs. human game"
+          (it "announces X win"
               (should-contain
                 "X wins"
-                (human-v-human-game-output moves-for-x-win))))
+                (human-v-human-game-output moves-for-x-win)))
 
-(describe "a full human vs. human game with O win"
-          (it "should go through to the end"
+          (it "announces O win"
               (should-contain
                "O wins"
-               (human-v-human-game-output moves-for-o-win))))
+               (human-v-human-game-output moves-for-o-win)))
 
-(describe "a full human vs. human game with tie"
-          (it "should go through to the end"
+          (it "announces tie"
               (should-contain
                "Tie"
+               (human-v-human-game-output moves-for-tie)))
+
+          (it "displays the board"
+              (should-contain
+               "1 | 2 | 3\n4 | 5 | 6\n7 | 8 | 9"
                (human-v-human-game-output moves-for-tie))))
