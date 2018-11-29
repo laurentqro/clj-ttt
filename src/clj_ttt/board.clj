@@ -47,21 +47,26 @@
     (nth board index)))
 
 (defn combinations [board]
-  (apply concat
-         ((juxt rows columns diagonals) board)))
+  (->> board
+       ((juxt rows columns diagonals))
+       (apply concat)))
 
 (defn winning-combination [board]
-  (first
-    (filter winning-combination? (combinations board))))
+  (->> board
+       (combinations)
+       (filter winning-combination?)
+       (first)))
 
 (defn winner [board]
-  (first
-    (distinct
-      (winning-combination board))))
+  (->> board
+       (winning-combination)
+       (distinct)
+       (first)))
 
 (defn win? [board]
-  (boolean
-    (some winning-combination? (combinations board))))
+  (->> board
+       (combinations)
+       (some winning-combination?)))
 
 (defn tie? [board]
   (and
