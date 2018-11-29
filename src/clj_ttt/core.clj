@@ -10,16 +10,15 @@
         mark       (current-player-mark board)
         next-board (mark-board board move mark)]
 
-        (cond
-          (win? next-board) (printf "%s wins!" (winner next-board))
-          (tie? next-board) (println "Tie" next-board)
-          :else (play-turn next-board))
-        ))
-
+    (cond
+      (win? next-board) (announce-winner next-board)
+      (tie? next-board) (announce-tie next-board)
+      :else (play-turn next-board))))
 
 (defn start-game []
   (greetings)
-  (play-turn new-board))
+  (play-turn new-board)
+  (goodbye))
 
 (defn -main
   [& args]
