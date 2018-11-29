@@ -19,13 +19,13 @@
 (describe "a full human vs. human game with X win"
           (it "should go through to the end"
               (should-contain
-                "Win"
+                "X wins"
                 (human-v-human-game-output moves-for-x-win))))
 
 (describe "a full human vs. human game with O win"
           (it "should go through to the end"
               (should-contain
-               "Win"
+               "O wins"
                (human-v-human-game-output moves-for-o-win))))
 
 (describe "a full human vs. human game with tie"

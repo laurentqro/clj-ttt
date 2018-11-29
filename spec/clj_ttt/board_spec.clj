@@ -27,7 +27,6 @@
       (let [board ["X" "" ""
                    "X" "" ""
                    "X" "" ""]]
-        (println (columns board))
         (should= true (win? board))))
 
   (it "recognizes a tie"
@@ -47,13 +46,13 @@
 
   (it "knows the winner is X"
       (let [board ["X" "X" "X"
-                   "X" "O" "O"
-                   "O" "X" "X"]]
+                   "" "" ""
+                   "" "" ""]]
         (should= "X" (winner board))))
 
   (it "knows the winner is O"
-      (let [board ["O" "X" "X"
-                  "X" "O" "O"
-                  "X" "X" "O"]]
+      (let [board ["O" "" ""
+                  "" "O" ""
+                  "" "" "O"]]
         (should= "O" (winner board)))))
 

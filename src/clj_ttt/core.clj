@@ -8,10 +8,11 @@
         next-board (mark-board board move mark)]
 
         (cond
-          (win? next-board) (println "Win" next-board)
+          (win? next-board) (printf "%s wins!" (winner next-board))
           (tie? next-board) (println "Tie" next-board)
           :else (play-turn next-board))
         ))
+
 
 (defn start-game []
   (play-turn new-board))

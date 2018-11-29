@@ -39,8 +39,8 @@
 (defn full? [board]
   (= 0 (available-moves-count board)))
 
-(defn pristine? [cells]
-  (every? available? cells))
+(defn pristine? [board]
+  (every? available? board))
 
 (defn get-cell [board position]
   (let [index (- position 1)]
@@ -50,19 +50,31 @@
   (apply concat
          ((juxt rows columns diagonals) board)))
 
+(defn winning-combination [board]
+  (first
+    (filter winning-combination? (combinations board))))
+
+(defn winner [board]
+  (first
+    (distinct
+      (winning-combination board))))
+
 (defn win? [board]
   (boolean
     (some winning-combination? (combinations board))))
 
+(def no-win?
+  (complement win?))
+
 (defn tie? [board]
   (and
     (full? board)
-    (not (win? board))))
+    (no-win? board)))
 
 (defn game-over? [board]
   (or
-   (win? board)
-   (tie? board)))
+    (win? board)
+    (tie? board)))
 
 (defn mark-board [board position mark]
   (assoc board (- position 1)  mark))
