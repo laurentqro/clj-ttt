@@ -12,21 +12,22 @@
       (should= "X" cell)))
 
   (it "recognizes a diagonal win"
-      (let [board ["X" "O" "X"
-                   "O" "X" "O"
-                   "O" "X" "X"]]
+      (let [board ["X" "" ""
+                   "" "X" ""
+                   "" "" "X"]]
       (should= true (win? board))))
 
   (it "recognizes a row win"
       (let [board ["X" "X" "X"
-                   "X" "O" "O"
-                   "O" "X" "X"]]
+                   "" "" ""
+                   "" "" ""]]
         (should= true (win? board))))
 
   (it "recognizes a column win"
-      (let [board ["X" "O" "X"
-                   "X" "O" "O"
-                   "X" "X" "X"]]
+      (let [board ["X" "" ""
+                   "X" "" ""
+                   "X" "" ""]]
+        (println (columns board))
         (should= true (win? board))))
 
   (it "recognizes a tie"
@@ -42,4 +43,17 @@
       (should= "23" (apply str (available-moves ["X" "2" "3"]))))
 
   (it "knows player X should start"
-        (should= "X" (current-player-mark new-board))))
+      (should= "X" (current-player-mark new-board)))
+
+  (it "knows the winner is X"
+      (let [board ["X" "X" "X"
+                   "X" "O" "O"
+                   "O" "X" "X"]]
+        (should= "X" (winner board))))
+
+  (it "knows the winner is O"
+      (let [board ["O" "X" "X"
+                  "X" "O" "O"
+                  "X" "X" "O"]]
+        (should= "O" (winner board)))))
+

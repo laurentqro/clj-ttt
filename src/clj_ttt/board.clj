@@ -46,12 +46,13 @@
   (let [index (- position 1)]
     (nth board index)))
 
+(defn combinations [board]
+  (apply concat
+         ((juxt rows columns diagonals) board)))
+
 (defn win? [board]
   (boolean
-   (or
-    (some winning-combination? (rows board))
-    (some winning-combination? (columns board))
-    (some winning-combination? (diagonals board)))))
+    (some winning-combination? (combinations board))))
 
 (defn tie? [board]
   (and
