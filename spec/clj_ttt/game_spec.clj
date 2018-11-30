@@ -1,6 +1,6 @@
-(ns clj-ttt.core-spec
+(ns clj-ttt.game-spec
   (:require [speclj.core :refer :all]
-            [clj-ttt.core :refer :all]
+            [clj-ttt.game :refer :all]
             [clj-ttt.board :refer :all]
             [clj-ttt.human-player :refer :all]))
 
