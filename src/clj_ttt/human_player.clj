@@ -16,4 +16,4 @@
       (do
         (display-invalid-input-message)
         (display-board board)
-        (pick-move board)))))
+        (recur board)))))

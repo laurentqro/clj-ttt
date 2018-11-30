@@ -13,7 +13,7 @@
     (cond
       (win? next-board) (announce-winner next-board)
       (tie? next-board) (announce-tie next-board)
-      :else (play next-board))))
+      :else (recur next-board))))
 
 (defn start-game []
   (greetings)
