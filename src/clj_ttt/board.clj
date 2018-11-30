@@ -31,7 +31,7 @@
   (apply = combination))
 
 (defn available-moves [board]
-  (filter available? board))
+  (apply vector (filter available? board)))
 
 (defn- available-moves-count [board]
   (count (available-moves board)))

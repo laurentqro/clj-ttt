@@ -1,6 +1,9 @@
 (ns clj-ttt.io
   (:require [clj-ttt.board :refer :all]))
 
+(defn- display [message]
+  (println message))
+
 (defn- format-row [board]
   (clojure.string/join " | " board))
 
@@ -11,12 +14,18 @@
        (clojure.string/join "\n")))
 
 (defn greetings []
-  (println "Welcome to Tic Tac Toe"))
+  (display "Welcome to Tic Tac Toe"))
 
 (defn display-board [board]
   (->> board
        (format-board)
-       (println)))
+       (display)))
+
+(defn display-invalid-input-message []
+  (display "You entered an invalid move."))
+
+(defn prompt-move []
+  (display "Please enter your move:"))
 
 (defn announce-winner [board]
   (display-board board)
@@ -24,7 +33,7 @@
 
 (defn announce-tie [board]
   (display-board board)
-  (println "Tie"))
+  (display "Tie"))
 
 (defn goodbye []
-  (println "Goodbye!"))
+  (display "Goodbye!"))

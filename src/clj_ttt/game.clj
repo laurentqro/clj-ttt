@@ -6,7 +6,7 @@
 (defn play [board]
   (display-board board)
 
-  (let [move       (pick-move)
+  (let [move       (pick-move board)
         mark       (current-player-mark board)
         next-board (mark-board board move mark)]
 
