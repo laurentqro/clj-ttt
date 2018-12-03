@@ -33,7 +33,7 @@
 (defn available-moves [board]
   (apply vector (filter available? board)))
 
-(defn- available-moves-count [board]
+(defn available-moves-count [board]
   (count (available-moves board)))
 
 (defn- full? [board]
