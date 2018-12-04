@@ -10,7 +10,7 @@
                            "X" "X" "O"]]
 
                 (should= 6
-                         (pick-best-move board))))
+                         (computer-pick-move board))))
 
           (it "goes for the win"
               (let [board ["1" "2" "3"
@@ -18,7 +18,7 @@
                            "X" "X" "O"]]
 
                 (should= 1
-                         (pick-best-move board))))
+                         (computer-pick-move board))))
 
           (it "blocks the opponent from winning"
               (let [board ["X" "O" "3"
@@ -26,7 +26,7 @@
                            "7" "8" "X"]]
 
                 (should= 5
-                         (pick-best-move board))))
+                         (computer-pick-move board))))
 
           (it "blocks the opponent from winning"
               (let [board ["X" "X" "O"
@@ -43,4 +43,4 @@
                            "7" "8" "9"]]
 
                 (should= 3
-                         (pick-best-move board)))))
+                         (computer-pick-move board)))))

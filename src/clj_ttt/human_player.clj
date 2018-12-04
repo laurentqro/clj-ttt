@@ -7,7 +7,7 @@
       (available-moves)
       (.contains input)))
 
-(defn pick-move [board]
+(defn human-pick-move [board]
   (prompt-move)
 
   (let [input (read-line)]

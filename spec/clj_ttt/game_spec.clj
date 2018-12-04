@@ -2,6 +2,7 @@
   (:require [speclj.core :refer :all]
             [clj-ttt.game :refer :all]
             [clj-ttt.board :refer :all]
+            [clj-ttt.computer-player :refer :all]
             [clj-ttt.human-player :refer :all]))
 
 (def moves-for-x-win          ["1" "5" "2" "8" "3"])
@@ -15,7 +16,11 @@
 (defn- human-v-human-game-output [moves]
   (with-out-str
     (with-in-str (input moves)
-      (start-game))))
+      (start-game {"X" human-pick-move "O" human-pick-move}))))
+
+(defn- computer-v-computer-game-output []
+  (with-out-str
+    (start-game {"X" computer-pick-move "O" computer-pick-move})))
 
 (describe "a human vs. human game"
           (it "greets the players"

@@ -39,7 +39,7 @@
 (defn- best-scored-move [moves]
   (key (apply max-key val moves)))
 
-(defn pick-best-move [board]
+(defn computer-pick-move [board]
   (->> board
        (score-moves)
        (best-scored-move)

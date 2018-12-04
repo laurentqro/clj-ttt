@@ -3,19 +3,20 @@
             [clj-ttt.human-player :refer :all]
             [clj-ttt.board :refer :all]))
 
-(defn play [board]
+(defn play [board move-functions]
+  (clear-screen)
   (display-board board)
 
-  (let [move       (pick-move board)
-        mark       (current-player-mark board)
+  (let [mark       (current-player-mark board)
+        move       ((get move-functions mark) board)
         next-board (mark-board board move mark)]
 
     (cond
       (win? next-board) (announce-winner next-board)
       (tie? next-board) (announce-tie next-board)
-      :else (recur next-board))))
+      :else (recur next-board move-functions))))
 
-(defn start-game []
+(defn start-game [move-functions]
   (greetings)
-  (play new-board)
+  (play new-board move-functions)
   (goodbye))

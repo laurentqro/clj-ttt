@@ -37,3 +37,7 @@
 
 (defn goodbye []
   (display "Goodbye!"))
+
+(defn clear-screen []
+  (print "\u001b[2J")
+  (print "\u001B[0;0f"))
