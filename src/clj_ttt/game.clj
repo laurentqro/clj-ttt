@@ -4,7 +4,6 @@
             [clj-ttt.board :refer :all]))
 
 (defn play [board move-functions]
-  (clear-screen)
   (display-board board)
 
   (let [mark       (current-player-mark board)

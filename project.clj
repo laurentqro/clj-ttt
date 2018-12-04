@@ -1,4 +1,4 @@
-(defproject clj-ttt "1.0.0"
+(defproject clj-ttt "1.0.1"
   :description "Tic Tac Toe implemented in Clojure"
   :url "https://github.com/laurentqro/clj-ttt"
   :license {:name "Eclipse Public License"

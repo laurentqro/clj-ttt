@@ -4,7 +4,7 @@ The classic game of Tic Tac Toe, implemented in Clojure. It's the first time I w
 
 ## Usage
 
-To play against the AI, run `java -jar clj-ttt-1.0.0-standalone.jar`.
+To play against the AI, run `java -jar clj-ttt-1.0.1-standalone.jar`.
 
 ## Tests
 
