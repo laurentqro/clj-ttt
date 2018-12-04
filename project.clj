@@ -1,6 +1,6 @@
-(defproject clj-ttt "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject clj-ttt "1.0.0"
+  :description "Tic Tac Toe implemented in Clojure"
+  :url "https://github.com/laurentqro/clj-ttt"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :main clj-ttt.core

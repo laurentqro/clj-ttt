@@ -1,4 +1,5 @@
 (ns clj-ttt.core
+  (:gen-class)
   (:require [clj-ttt.game :refer :all]
             [clj-ttt.human-player :refer :all]
             [clj-ttt.computer-player :refer :all]))
